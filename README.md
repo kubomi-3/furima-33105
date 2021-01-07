@@ -54,12 +54,12 @@
 
 | Column           | Type       | Option                         |
 | ---------------- | ---------- | ------------------------------ |
-| zip_code         | integer    | null: false                    |
+| zip_code         | string     | null: false                    |
 | area_id          | integer    | null: false                    |
 | municipality     | string     | null: false                    |
 | address          | string     | null: false                    |
 | building         | string     |                                |
-| telephone_number | integer    | null: false                    |
+| telephone_number | string     | null: false                    |
 | order            | references | null: false, foreign_key: true |
 
 ### Association
