@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column          | Type       | Option            |
-| --------------- | ---------- | ----------------- |
-| name            | string     | null: false       | 
-| description     | text       | null: false       |
-| category_id     | integer    | null: false       |
-| condition_id    | integer    | null: false       |
-| delivery_fee_id | integer    | null: false       |
-| area_id         | integer    | null: false       |
-| days_id         | integer    | null: false       |
-| price           | integer    | null: false       |
-| user            | references | foreign_key: true |
+| Column          | Type       | Option                         |
+| --------------- | ---------- | ------------------------------ |
+| name            | string     | null: false                    | 
+| description     | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| condition_id    | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
+| area_id         | integer    | null: false                    |
+| days_id         | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -39,29 +39,29 @@
 
 ## orders テーブル
 
-| Column      | Type       | Option            |
-| ----------- | ---------- | ----------------- |
-| item        | references | foreign_key: true |
-| user        | references | foreign_key: true |
-| destination | references | foreign_key: true |
+| Column      | Type       | Option                         |
+| ----------- | ---------- | ------------------------------ |
+| item        | references | null: false, foreign_key: true |
+| user        | references | null: false, foreign_key: true |
 
 ### Association 
 
-belongs_to :user
-belongs_to :item
-belongs_to :destination
+- belongs_to :user
+- belongs_to :item
+- has_one :destination
 
 ## destinations テーブル
 
-| Column           | Type    | Option      |
-| ---------------- | ------- | ----------- |
-| zip_code         | integer | null: false |
-| area_id          | integer | null: false |
-| municipality     | string  | null: false |
-| address          | string  | null: false |
-| building         | string  |             |
-| telephone_number | integer | null: false |
+| Column           | Type       | Option                         |
+| ---------------- | ---------- | ------------------------------ |
+| zip_code         | integer    | null: false                    |
+| area_id          | integer    | null: false                    |
+| municipality     | string     | null: false                    |
+| address          | string     | null: false                    |
+| building         | string     |                                |
+| telephone_number | integer    | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :orders
+- belongs_to :order
