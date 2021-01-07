@@ -6,8 +6,7 @@
 | --------------------- | ------ | ------------------------- |
 | nickname              | string | null: false               |
 | email                 | string | null: false, unique: true |
-| password              | string | null: false               |
-| confirmation_password | string | null: false               |
+| encrypted_password    | string | null: false               |
 | last_name             | string | null: false               |
 | first_name            | string | null: false               |
 | last_name_kana        | string | null: false               |
@@ -21,46 +20,45 @@
 
 ## items テーブル
 
-| Column       | Type       | Option            |
-| ------------ | ---------- | ----------------- |
-| image        |            |                   |
-| name         | string     | null: false       | 
-| description  | text       | null: false       |
-| category     | integer    | null: false       |
-| condition    | integer    | null: false       |
-| delivery_fee | integer    | null: false       |
-| area         | integer    | null: false       |
-| days         | integer    |  null: false      |
-| price        | integer    | null: false       |
-| user_id      | references | foreign_key: true |
+| Column          | Type       | Option            |
+| --------------- | ---------- | ----------------- |
+| name            | string     | null: false       | 
+| description     | text       | null: false       |
+| category_id     | integer    | null: false       |
+| condition_id    | integer    | null: false       |
+| delivery_fee_id | integer    | null: false       |
+| area_id         | integer    | null: false       |
+| days_id         | integer    | null: false       |
+| price           | integer    | null: false       |
+| user            | references | foreign_key: true |
 
 ### Association
 
 - has_one :oder
 - belongs_to :user
 
-## ordersテーブル
+## orders テーブル
 
-| Column     | Type       | Option            |
-| ---------- | ---------- | ----------------- |
-| item_id    | references | foreign_key: true |
-| user_id    | references | foreign_key: true |
-| address_id | references | foreign_key: true |
+| Column      | Type       | Option            |
+| ----------- | ---------- | ----------------- |
+| item        | references | foreign_key: true |
+| user        | references | foreign_key: true |
+| destination | references | foreign_key: true |
 
 ### Association 
 
 belongs_to :user
 belongs_to :item
-belongs_to :address
+belongs_to :destination
 
-## addressesテーブル
+## destinations テーブル
 
 | Column           | Type    | Option      |
 | ---------------- | ------- | ----------- |
 | zip_code         | integer | null: false |
-| prefectures      | integer | null: false |
+| area_id          | integer | null: false |
 | municipality     | string  | null: false |
-| house_number     | string  | null: false |
+| address          | string  | null: false |
 | building         | string  |             |
 | telephone_number | integer | null: false |
 
