@@ -3,11 +3,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   validates :nickname,         presence: true
-  validates :last_name,        presence: true
-  validates :first_name,       presence: true
-  validates :last_name_kana,   presence: true
-  validates :first_name_kana,  presence: true
+  
+  validates :encrypted_password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/, message: '半角英数字混合で入力して下さい'}
+
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' } do
+    validates :last_name,        presence: true
+    validates :first_name,       presence: true
+  end
+  with_options presence: true, format: { with: /\A[ァ-ヶ]+\z/, message: '全角カタカナを使用してください' } do
+    validates :last_name_kana,        presence: true
+    validates :first_name_kana,       presence: true
+  end
+  
   validates :birthday,         presence: true
 end
