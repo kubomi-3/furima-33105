@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user do
+    id                      { Faker::Number.between(from: 1, to: 100)}
     nickname                { 'test' }
     email                   { Faker::Internet.free_email }
     password                { '111aaa' }
