@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :items do
     resources :orders, only: [:index, :create]
   end
+  get "orders/complete", to: "orders#complete"
 end

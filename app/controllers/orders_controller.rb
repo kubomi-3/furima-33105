@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     if @user_order.valid?
       pay_item
       @user_order.save
-      redirect_to root_path
+      redirect_to orders_complete_path
     else
       render :index
     end
