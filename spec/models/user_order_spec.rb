@@ -17,14 +17,14 @@ RSpec.describe UserOrder, type: :model do
     end
     context '内容に問題がある場合' do
       it 'zip_codeが空では購入できない' do
-        @user_order.zip_code = ""
+        @user_order.zip_code = ''
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Zip code can't be blank", "Zip code is invalid. Include hyphen(-)")
+        expect(@user_order.errors.full_messages).to include("Zip code can't be blank", 'Zip code is invalid. Include hyphen(-)')
       end
       it 'zip_codeにハイフンが含まれていなければ購入できない' do
-        @user_order.zip_code = "1234567"
+        @user_order.zip_code = '1234567'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Zip code is invalid. Include hyphen(-)")
+        expect(@user_order.errors.full_messages).to include('Zip code is invalid. Include hyphen(-)')
       end
       it 'area_idが選択されていなければ購入できない' do
         @user_order.area_id = 1
@@ -47,17 +47,17 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include("Telephone number can't be blank")
       end
       it 'telephone_numberにハイフンが含まれていれば購入できない' do
-        @user_order.telephone_number = "1234-5678"
+        @user_order.telephone_number = '1234-5678'
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Telephone number is invalid. Don't include hyphen(-)")
       end
       it 'telephone_numberが12桁以上だと購入できない' do
-        @user_order.telephone_number = "123456789012"
+        @user_order.telephone_number = '123456789012'
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Telephone number is invalid. Don't include hyphen(-)")
       end
       it 'telephone_numberが全角数字では購入できない' do
-        @user_order.telephone_number = "０９０１２３４５６７８"
+        @user_order.telephone_number = '０９０１２３４５６７８'
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Telephone number is invalid. Don't include hyphen(-)")
       end
